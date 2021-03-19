@@ -1,0 +1,6 @@
+rootProject.name = "project-template-runner"
+
+include ":project-template-runner-core"
+include ":project-template-runner-app"
+
+enableFeaturePreview("GRADLE_METADATA")

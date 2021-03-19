@@ -1,0 +1,37 @@
+import com.chrynan.project.template.runner.buildSrc.LibraryConstants
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31"
+        classpath "digital.wup:android-maven-publish:3.6.2"
+        classpath "org.jetbrains.kotlin:kotlin-serialization:1.4.31"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.30"
+    }
+}
+
+apply plugin: "org.jetbrains.dokka"
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://repo.repsy.io/mvn/chrynan/public" }
+        maven { url "https://dl.bintray.com/chrynan/chrynan" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// Documentation
+tasks.dokkaGfmMultiModule.configure {
+    outputDirectory.set(file("${projectDir.path}/docs"))
+}

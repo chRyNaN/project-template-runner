@@ -1,0 +1,57 @@
+import com.chrynan.project.template.runner.buildSrc.LibraryConstants
+
+apply plugin: "kotlin-multiplatform"
+apply plugin: "kotlinx-serialization"
+apply plugin: "org.jetbrains.dokka"
+apply plugin: "maven-publish"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+kotlin {
+    jvm()
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                // Kotlinx Serialization
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1"
+
+                // Kotlin Coroutines
+                implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+            }
+        }
+        jvmMain {
+            dependencies {
+                // Handlebars Java - Mustache Templating
+                implementation "com.github.jknack:handlebars:4.2.0"
+
+                // Kotlinx Serialization Yaml
+                implementation "com.charleskorn.kaml:kaml:0.28.3"
+
+                // Clikt - CLI Program Builder Tool
+                api "com.github.ajalt.clikt:clikt:3.1.0"
+
+                // Logging - slf4j
+                api "org.slf4j:slf4j-log4j12:1.7.29"
+            }
+        }
+    }
+}
+
+configurations {
+    compileClasspath
+}
+
+publishing {
+    repositories {
+        maven {
+            url "https://repo.repsy.io/mvn/chrynan/public"
+
+            credentials {
+                username = project.findProperty("repsyUsername") ?: System.getenv("repsyUsername")
+                password = project.findProperty("repsyToken") ?: System.getenv("repsyToken")
+            }
+        }
+    }
+}

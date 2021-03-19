@@ -1,0 +1,10 @@
+{
+  "projectBaseDirectoryPath": "src",
+  "projectName": "sample",
+  "projectDescription": "Sample of using this utility.",
+  "targetJvm": true,
+  "targetJs": false,
+  "targetAndroid": false,
+  "targetIos": false,
+  "enableTemplateData": false
+}

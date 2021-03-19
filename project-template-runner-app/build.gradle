@@ -1,0 +1,17 @@
+import com.chrynan.project.template.runner.buildSrc.LibraryConstants
+
+apply plugin: "org.jetbrains.kotlin.jvm"
+apply plugin: "application"
+
+group LibraryConstants.group
+version LibraryConstants.versionName
+
+application {
+    mainClass = "com.chrynan.project.template.runner.app.MainKt"
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    implementation project(":project-template-runner-core")
+}
